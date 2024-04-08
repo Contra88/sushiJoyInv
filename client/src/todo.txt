@@ -1,0 +1,38 @@
+  *************FRONTEND*****************
+
+1* Crear proyecto y decargar dependencias ✔
+2* crear estrcutura de carpetas ✔
+3* crear y conf router
+4* creacion de componentes principales ✔
+5* procesar peticiones fetch y config cors ✔
+6* creacion de schemas de validacion INCOMPLETA!!😒
+7* validacion de formulario (hookForm y zod) TODO**
+** manejo de errors con react router TODO****
+** agregar errors a las validaciones del form
+8* creacion y config jwt TODO***
+9* maquetacion css TODO*****
+10* comenzar tests TODO****
+** implementar react table component ✔
+** dar estilos a la tabla
+*** implementar filtro a la tabla TODO***
+** pasar total a tabla productos  TODO***
+*** comenzar a config estado global TODO*****
+****eliminar y editar articulo de la tabla TODO*****
+***config router y react query TODO ✔
+***implementar consultas con react query INCOMPLETA!1😒
+
+
+
+*****************BACKEND***********************
+
+1* Crear proyecto y decargar dependencias ✔
+2* crear estrcutura de carpetas ✔
+3* crear y config server ✔
+4* config cors INCOMPLETO ✔
+5* crear rutas principales 
+6* agregar controllers INCOMPLETO***
+7* config database ✔
+8* config jwt y validaciones (zod) TODO****
+9* iniciar config testing TODO****
+** crear user controllers get post delete TODO***
+*** encriptar password TODO****
