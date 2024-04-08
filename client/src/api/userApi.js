@@ -5,7 +5,7 @@ const user = axios.create({
 });
 
 export const registerUser = async (registerUser) => {
-  const res = await user.get("/register", registerUser);
+  const res = await user.post("/register", registerUser);
   console.log(res.data);
-  return res.data;
+  return await res.data;
 };

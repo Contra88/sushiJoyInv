@@ -43,7 +43,7 @@ bower_components
 build/Release
 
 # Dependency directories
-inv-sushi/server/node_modules/
+server/node_modules/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)

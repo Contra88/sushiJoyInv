@@ -7,8 +7,9 @@ function Register() {
   const mutation = useMutation({
     mutationFn: registerUser,
   });
-  const submit = handleSubmit((data) => {
+  const submit = handleSubmit(async (data) => {
     mutation.mutate(data);
+    alert("Usuario Registrado");
     reset();
   });
   return (
