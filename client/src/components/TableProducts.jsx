@@ -1,4 +1,3 @@
-import React from "react";
 import DataTable from "react-data-table-component";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../api/products.Api.js";
@@ -31,7 +30,7 @@ function TableProducts() {
     },
     {
       name: "ACTIONS",
-      selector: (row) => <button>Editar</button>,
+      selector: () => <button>Editar</button>,
     },
   ];
   if (isLoading) return <div>Loading...</div>;

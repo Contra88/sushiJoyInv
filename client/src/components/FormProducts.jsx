@@ -1,9 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { addProduct } from "../api/products.Api";
+import { productSchema } from "../schemas/productsSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+//import {  useAuthStore} from "../store/auth";
 
 function FormProducts() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm({
+    resolver: zodResolver(productSchema),
+  });
   const mutation = useMutation({
     mutationFn: addProduct,
     onSuccess: () => {

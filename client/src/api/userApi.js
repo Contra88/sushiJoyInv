@@ -9,3 +9,10 @@ export const registerUser = async (registerUser) => {
   console.log(res.data);
   return await res.data;
 };
+
+export const loginUser = async (loginUser) => {
+  const res = await user.post("/login", loginUser);
+  const results = await res.data;
+  //console.log(results);
+  return results;
+};

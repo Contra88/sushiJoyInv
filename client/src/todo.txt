@@ -20,6 +20,7 @@
 ****eliminar y editar articulo de la tabla TODO*****
 ***config router y react query TODO ✔
 ***implementar consultas con react query INCOMPLETA!1😒
+*** guardar token y redireccionar TODO*****
 
 
 

@@ -3,6 +3,7 @@ import FormProducts from "./components/FormProducts";
 import TableProducts from "./components/TableProducts";
 import Landing from "./components/Landing";
 import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,10 +23,13 @@ function App() {
       path: "/register",
       element: <Register />,
     },
+    {
+      path: "/login",
+      element: <Login />,
+    },
   ]);
   return (
     <>
-      <h3>Hello World</h3>
       <RouterProvider router={router} />
     </>
   );

@@ -1,4 +1,5 @@
 import { pool } from "../database/dbConfig.js";
+import jwt from "jsonwebtoken";
 
 export const getProducts = async (req, res) => {
   try {
@@ -17,6 +18,32 @@ export const addProduct = async (req, res) => {
       "INSERT INTO productos(nombre,categoria,descripcion,precio)VALUES(?,?,?,?)",
       [nombre, categoria, descripcion, precio]
     );
+    let token = "";
+
+    //*traer lo que hay en el header authorization
+    const authorization = req.get("authorization");
+    console.log(authorization);
+
+    //*validar que la cabecera empieza con bearer y traer el token despues del bearer
+    if (authorization && authorization.toLowerCase().startsWith("Bearer")) {
+      token = authorization.split(" ");
+    }
+
+    //secret de prueba// utilizar variables de entorno
+    console.log("antes del error");
+
+    //decodificar token
+    const decodeToken = {};
+    try {
+      //TODO CONFIG VARIABLES DE ENTORNO!! PRIMERO QUE NADA
+      decodeToken = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (e) {
+      console.log(e);
+    }
+    //*verificar token
+    if (!decodeToken || !decodeToken.id) {
+      return res.status(401).json({ error: "token missing or invalid" });
+    }
     res.json(rows[0]);
   } catch (error) {
     console.log(error);
