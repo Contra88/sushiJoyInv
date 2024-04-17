@@ -20,6 +20,7 @@ export const registerCtrl = async (req, res) => {
 
 export const loginCtrl = async (req, res) => {
   try {
+    //*Esta func valida los datos con la dbb y genera el token
     const { user, password } = req.body;
     //TODO SELECT USER BD
     const [rows] = await pool.query("SELECT * FROM usuarios WHERE usuario=?", [
@@ -34,8 +35,7 @@ export const loginCtrl = async (req, res) => {
     //Generar Token
     const usuario = rows[0];
     const tokenSession = await tokenSign(usuario);
-    //console.log(usuario);
-    console.log(tokenSession);
+
     if (checkPassword) {
       res.json({
         data: rows[0],

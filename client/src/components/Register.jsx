@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "../api/userApi";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const { register, reset, handleSubmit } = useForm();
+  const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn: registerUser,
   });
@@ -11,6 +13,7 @@ function Register() {
     mutation.mutate(data);
     alert("Usuario Registrado");
     reset();
+    navigate("/login"); //redirecciona al login
   });
   return (
     <>

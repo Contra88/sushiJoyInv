@@ -5,6 +5,7 @@ import {
   getProducts,
   getProductsById,
 } from "../controllers/productsController.js";
+import { requireAuth } from "../middlewares/requireAuth.js";
 
 const router = Router();
 

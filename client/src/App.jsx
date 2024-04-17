@@ -4,6 +4,7 @@ import TableProducts from "./components/TableProducts";
 import Landing from "./components/Landing";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Profile from "./components/Profile";
 
 function App() {
   const router = createBrowserRouter([
@@ -26,6 +27,10 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/profile",
+      element: <Profile />,
     },
   ]);
   return (

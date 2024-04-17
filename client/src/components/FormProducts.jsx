@@ -3,10 +3,11 @@ import { useMutation } from "@tanstack/react-query";
 import { addProduct } from "../api/products.Api";
 import { productSchema } from "../schemas/productsSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-//import {  useAuthStore} from "../store/auth";
+import { useAuthStore } from "../store/auth";
 
 function FormProducts() {
-  const { register, handleSubmit } = useForm({
+  const { profile } = useAuthStore();
+  const { register, handleSubmit, reset } = useForm({
     resolver: zodResolver(productSchema),
   });
   const mutation = useMutation({
@@ -18,9 +19,12 @@ function FormProducts() {
   const submit = handleSubmit((data) => {
     console.log(data);
     mutation.mutate(data);
+    alert("Producto Guardado");
+    reset();
   });
   return (
     <>
+      <p>Usuario: {profile}</p>
       <h3>Form Products</h3>
       <form action="" onSubmit={submit}>
         <label htmlFor="">Nombre Art</label>
