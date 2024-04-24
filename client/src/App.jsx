@@ -1,10 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import FormProducts from "./components/FormProducts";
-import TableProducts from "./components/TableProducts";
+//import TableProducts from "./components/TableProducts";
 import Landing from "./components/Landing";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import ErrorRoute from "./components/ErrorRoute";
+import Logout from "./components/Logout";
+import Table2 from "./components/Table2";
 
 function App() {
   const router = createBrowserRouter([
@@ -14,11 +17,13 @@ function App() {
     },
     {
       path: "/table",
-      element: <TableProducts />,
+      element: <Table2 />,
+      errorElement: <ErrorRoute />,
     },
     {
       path: "/",
       element: <Landing />,
+      errorElement: <ErrorRoute />,
     },
     {
       path: "/register",
@@ -32,11 +37,15 @@ function App() {
       path: "/profile",
       element: <Profile />,
     },
+    {
+      path: "/logout",
+      element: <Logout />,
+    },
   ]);
   return (
-    <>
+    <div className="bg-slate-800 text-white">
       <RouterProvider router={router} />
-    </>
+    </div>
   );
 }
 

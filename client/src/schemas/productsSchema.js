@@ -8,5 +8,7 @@ export const productSchema = z.object({
   descripcion: z
     .string()
     .min(6, { message: "descripcion minimo 6 caracteres" }),
-  precio: z.string().refine((precio) => parseInt(precio)),
+  precio: z
+    .string()
+    .refine((precio) => parseInt(precio), { message: "Precio requerido" }),
 });

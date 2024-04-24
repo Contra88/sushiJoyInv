@@ -12,7 +12,8 @@ export const requireAuth = (req, res, next) => {
 
   const token = authHeader.split(" ")[1]; //divider token bearer
 
-  if (!token) return res.status(401).json({ error: "no Autorizado2" });
+  if (!token)
+    return res.status(401).json({ error: "no Autorizado falta token auth" });
 
   //*Esta funcion verifica si el token que viene en el header coincide
   //*con el token generado en el backend

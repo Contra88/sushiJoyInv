@@ -1,26 +1,18 @@
 import DataTable from "react-data-table-component";
-//import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { getProducts } from "../api/products.Api";
+import { useQuery } from "@tanstack/react-query";
 import { useAuthStore } from "../store/auth";
-import { useEffect, useState } from "react";
+import ProtectedRoute from "../helpers/ProtectedRoute";
 
-//import ProtectedRoute from "../helpers/ProtectedRoute.jsx";
-
-function TableProducts() {
+function Table2() {
   const { profile } = useAuthStore();
-  //const [total, setTotal] = useState(0);
-  const [datos, setData] = useState([]);
-
-  /*const { data, isLoading, isError, error } = useQuery({
+  const [total, setTotal] = useState(0);
+  const { data, isLoading, error } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
-  });*/
-  //console.log(data);
-  useEffect(() => {
-    const res = getProducts();
-    setData(res);
-  }, []);
-  //const [records, setRecords] = useState(data);
+  });
+  const [records, setRecords] = useState(data);
 
   const columns = [
     {
@@ -48,45 +40,49 @@ function TableProducts() {
       cell: () => <button>Borrar</button>,
     },
   ];
-  /* if (isLoading) return <div>Loading...</div>;
-  else if (isError) return <div>Error:{error.message}</div>;
-  console.log(error);*/
+
+  {
+    if (isLoading) return console.log("loading");
+    if (error) return console.log(error.message);
+  }
+
   //*FUNC sumaTotal
-  /*const sumaTotal = () => {
+  const sumaTotal = () => {
     let suma = 0;
     data.forEach((e) => {
       let precioNum = parseFloat(e.precio);
       suma += precioNum;
       return setTotal(suma);
     });
-  };*/
+  };
 
   //*FUNC FILTER
-  /*const handleChange = (e) => {
+  const handleChange = (e) => {
     console.log(e.target.value);
     const filterRecord = data.filter((record) => {
       return record.nombre.toLowerCase().includes(e.target.value.toLowerCase());
     });
     setRecords(filterRecord);
-  };*/
+  };
 
   return (
     <>
-      <h3>Table Products</h3>
+      <ProtectedRoute />
+      <h3>table</h3>
       <p>Usuario:{profile}</p>
-      <p>Total:</p>
-      <button>Total</button>
-      <input type="text" />
+      <p>Total:{total}</p>
+      <button onClick={sumaTotal}>Totala</button>
+      <input type="text" onChange={handleChange} />
       <DataTable
+        title="Productos"
         columns={columns}
-        data={datos}
+        data={records}
         pagination={10}
         fixedHeader
         selectableRows
-        //onSelectedRowsChange={(records) => console.log(records)}
       />
     </>
   );
 }
 
-export default TableProducts;
+export default Table2;

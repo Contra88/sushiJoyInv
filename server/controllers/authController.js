@@ -3,18 +3,34 @@ import { pool } from "../database/dbConfig.js";
 import { tokenSign } from "../helpers/generateToken.js";
 
 export const registerCtrl = async (req, res) => {
+  //*Capturar datos body
+  const { password, user } = req.body;
   try {
-    const { password, user } = req.body;
-    const passwordHash = await encrypt(password); //password co hash
-    //TODO agregar a BD
-    const [result] = await pool.query(
-      "INSERT INTO usuarios(usuario,password)VALUES(?,?)",
-      [user, passwordHash]
+    //*VALIDAR E UMPEDIR USUARIOS DUPLICADOS
+    const [rows] = await pool.query(
+      "SELECT usuario FROM usuarios WHERE usuario=?",
+      [user]
     );
-    console.log(result);
-    res.json(result[0]);
+    const bdUser = rows[0];
+
+    if (bdUser == undefined) {
+      try {
+        //*SI EL USUARIO ES VALIDO CREA USUARIO
+        const passwordHash = await encrypt(password); //password co hash
+        const [result] = await pool.query(
+          "INSERT INTO usuarios(usuario,password)VALUES(?,?)",
+          [user, passwordHash]
+        );
+
+        res.json(result[0]);
+      } catch (error) {
+        res.status(404).json({ mensaje: "Error al Registrarse" });
+      }
+    } else if (user == bdUser.usuario) {
+      res.status(409).json({ message: "El usuario ya existe!" });
+    }
   } catch (error) {
-    res.status(404).json({ mensaje: "Error al Registrarse" });
+    res.status(409).json({ message: `Error ${error}` });
   }
 };
 
