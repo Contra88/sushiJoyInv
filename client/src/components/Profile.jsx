@@ -29,7 +29,10 @@ function Profile() {
     <>
       <ProtectedRoute />
       <Navigation />
-      <h3>Usuario: {profile}</h3>
+      <div className="relative">
+        <img src="./public/usuario.png" className="w-16 h-auto" alt="" />
+        <h3 className="bold text-left text-2xl"> {profile}</h3>
+      </div>
     </>
   );
 }

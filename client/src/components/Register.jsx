@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { userRegisterSchema } from "../schemas/userSchema";
 
 function Register() {
+  //TODO CREARDASBOARD DAR ESTILOS AL REGISTER Y CONTINUAR CON LAS TARJETAS DE VENTAS
   const {
     register,
     reset,

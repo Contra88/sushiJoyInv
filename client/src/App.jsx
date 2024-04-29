@@ -8,6 +8,7 @@ import Profile from "./components/Profile";
 import ErrorRoute from "./components/ErrorRoute";
 import Logout from "./components/Logout";
 import Table2 from "./components/Table2";
+import CardVenta from "./components/cardVenta";
 
 function App() {
   const router = createBrowserRouter([
@@ -40,6 +41,10 @@ function App() {
     {
       path: "/logout",
       element: <Logout />,
+    },
+    {
+      path: "/ventas",
+      element: <CardVenta />,
     },
   ]);
   return (
